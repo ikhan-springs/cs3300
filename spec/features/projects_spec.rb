@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.feature "Projects", type: :feature do
+  
+  scenario "should login" do
+    User = FactoryBot.create(:User)
+    login_as(User)
+    visit root_path
+    expect(page).to have_content("Logged in")
+  end
+  
   context "Create new project" do
     before(:each) do
       visit new_project_path
