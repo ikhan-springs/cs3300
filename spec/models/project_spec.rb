@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe Project, type: :model do
     context "validation tests" do
-        #login_user
         it "ensures the title is present" do
             project = Project.new(description: "Content of the description")
             expect(project.valid?).to eq(false)
@@ -22,7 +21,6 @@ RSpec.describe Project, type: :model do
     context "scopes tests" do
         let(:params) { { title: "Title", description: "some description" } }
         before(:each) do
-            #login_user
             Project.create(params)
             Project.create(params)
             Project.create(params)

@@ -3,7 +3,7 @@ require "spec_helper"
 
 RSpec.describe ProjectsController, type: :controller do
 
-    login_user
+    #login_user
 
     context "GET #index" do
         #login_user
