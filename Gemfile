@@ -79,3 +79,7 @@ gem 'simplecov', require: false, group: :test
 gem 'devise'
 
 gem 'faker'
+
+gem 'bootstrap', '~> 4.6.1'
+
+gem 'jquery-rails'
