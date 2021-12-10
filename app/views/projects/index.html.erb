@@ -4,58 +4,66 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+<div style="background-color:#a9feff">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </ul>
+      </ul>
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
 
-  </div>
-</nav>
+    </div>
+  </nav>
 
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<h1 style="color:blue">Ibrahim's Portfolio</h1>
+  <h1 style="color:blue">Ibrahim's Portfolio</h1>
 
-<p style="background-color:orange">My name is Ibrahim Khan. I am a B.I. Computer Security student at UCCS and plan to graduate in December 2022. Here are a few of the projects that I've worked on at UCCS</p>
+  <p style="background-color:orange">My name is Ibrahim Khan. I am a B.I. Computer Security student at UCCS and plan to graduate in December 2022. Here are a few of the projects that I've worked on at UCCS</p>
 
-<table>
-  <thead>
-    <tr>
-      <th scope="col" style="text-align:center">Title</th>
-      <th scope="col" style="text-align:center">Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= project.title %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col" style="text-align:center">Title</th>
+        <th scope="col" style="text-align:center">Description</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= project.title %></td>
+          <td><%= project.description %></td>
+          <td><%= link_to 'Show', project %></td>
+          <% if user_signed_in? %>
+            <td><%= link_to 'Edit', edit_project_path(project) %></td>
+            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Project', new_project_path %>
+  <br>
+
+  <% if user_signed_in? %>
+    <%= link_to 'New Project', new_project_path %>
+  <% end %>
+
+</div>
