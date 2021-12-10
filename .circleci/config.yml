@@ -10,9 +10,9 @@ jobs:
       - image: 'tghastings/code-esaas'
     steps:
       - checkout
-      #- run:
-          #name: rspec
-          #command: bundle install && bundle exec rake db:migrate RAILS_ENV=test && bundle exec rspec
+      - run:
+          name: rspec
+          command: bundle install && bundle exec rake db:migrate RAILS_ENV=test && bundle exec rspec
   deploy:
     executor: heroku/default
     steps:
@@ -28,5 +28,5 @@ workflows:
     jobs:
       - build
       - deploy:
-        requires:
-          - build
+          requires:
+            - build
